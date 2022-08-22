@@ -84,6 +84,9 @@ const productReducer = (state = initialValue, action) => {
     case RESET: {
       return { ...initialValue };
     }
+    case "CANCEL":{
+        return {...state, cart :action.payload }
+    }
     default:
       return state;
   }

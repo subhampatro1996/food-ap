@@ -72,3 +72,10 @@ export const updateExistingCartcart = (cart) => {
     payload: cart,
   };
 };
+
+export const emptyCart = ()=>{
+  return{
+    type : "CANCEL",
+    payload : []
+  }
+}

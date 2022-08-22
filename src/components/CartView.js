@@ -10,12 +10,14 @@ import {
   stateReset,
 } from "../redux/actions/productActions";
 import { useHistory } from "react-router";
+import { emptyCart } from "../redux/actions/productActions";
 
 const CartView = () => {
   const [qnt, setQnt] = useState(0);
   const cart = useSelector((state) => {
     return state.productsDetails;
   });
+  console.log("cartpage",cart)
   const totalPrice = () => {
     return cart.cart
       .map((item) => item.quantity * item.price)
@@ -36,6 +38,23 @@ const CartView = () => {
     dispatch(stateReset());
   };
 
+  const prodDetails = useSelector((state)=>{
+    return state.productsDetails
+  })
+  // const search = cart.
+  console.log("cartviewprod",prodDetails)
+  const search = prodDetails.searchValue
+  const filteredItem = () =>{
+    return cart.cart.filter( i=> i.name.toLowerCase().includes(search))
+  }
+  // console.log("filteredItm",filteredItem())
+  const res = filteredItem().map((ele)=>{
+    console.log("name",ele.name)
+  })
+  // console.log(res)
+  const handleCancel = ()=>{
+    dispatch(emptyCart())
+  }
   return (
     <div className="container">
       <div style={{ position: "relative", top: "95px" }}>
@@ -60,7 +79,7 @@ const CartView = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.cart.map((ele) => {
+                  {filteredItem().map((ele) => {
                     return (
                       <tr key={ele.id}>
                         <td style={{ paddingTop: "15px" }}>{ele.name}</td>
@@ -131,6 +150,8 @@ const CartView = () => {
                 {" "}
                 Place Order
               </button>
+              <br/>
+              {/* <button onClick={handleCancel}>Cancel</button> */}
             </div>
           </>
         )}

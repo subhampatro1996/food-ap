@@ -22,7 +22,7 @@ const NationWisPrdDisplay = () => {
     const handleAddToCart = (id)=>{
 
       const isProductExistsInCart = cartItems.some(item => item.id ===id )
-      const existingProduct = cartItems.filter(item => item.id ===id )[0]
+      const existingProduct = cartItems.filter(item => item.id === id )[0]
       
       let item 
       if(isProductExistsInCart){
@@ -95,7 +95,7 @@ const NationWisPrdDisplay = () => {
    
 
   return (
-    <div className="container" style={{marginTop:"120px",justifyContent:"center"}}>
+    <div className="container" style={{marginTop:"120px",justifyContent:"center", flexDirection:"column"}}>
       <div className="row">
         {/* <div className="col-lg-12"> */}
         {/* <h1>Productdetails - {prod.productsList.length}</h1> */}
